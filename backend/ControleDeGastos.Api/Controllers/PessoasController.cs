@@ -6,9 +6,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace ControleDeGastos.Api.Controllers;
 
-/// <summary>
-/// Endpoints de gerenciamento de pessoas: criação, listagem e remoção.
-/// </summary>
+// controller com as rotas de cadastro de pessoas: criar, listar e deletar
 [ApiController]
 [Route("api/pessoas")]
 public class PessoasController : ControllerBase
@@ -20,7 +18,7 @@ public class PessoasController : ControllerBase
         _context = context;
     }
 
-    /// <summary>Lista todas as pessoas cadastradas.</summary>
+    // GET /api/pessoas -> lista todas as pessoas cadastradas
     [HttpGet]
     public async Task<ActionResult<IEnumerable<PessoaDto>>> Listar()
     {
@@ -32,7 +30,7 @@ public class PessoasController : ControllerBase
         return Ok(pessoas);
     }
 
-    /// <summary>Cadastra uma nova pessoa. O identificador é gerado automaticamente.</summary>
+    // POST /api/pessoas -> cadastra uma pessoa nova,  id é gerado aqui mesmo
     [HttpPost]
     public async Task<ActionResult<PessoaDto>> Criar([FromBody] CreatePessoaDto dto)
     {
@@ -55,11 +53,8 @@ public class PessoasController : ControllerBase
         return CreatedAtAction(nameof(Listar), new { id = resultado.Id }, resultado);
     }
 
-    /// <summary>
-    /// Remove uma pessoa pelo identificador.
-    /// Regra de negócio: como a relação está configurada com delete em cascata
-    /// (ver AppDbContext), todas as transações dessa pessoa são removidas junto.
-    /// </summary>
+    // DELETE /api/pessoas/{id} -> remove uma pessoa
+    //  configurei cascade delete no AppDbContext, as transacoes dela somem junto
     [HttpDelete("{id:guid}")]
     public async Task<IActionResult> Deletar(Guid id)
     {

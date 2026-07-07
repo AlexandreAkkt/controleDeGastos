@@ -6,10 +6,8 @@ using Microsoft.EntityFrameworkCore;
 
 namespace ControleDeGastos.Api.Controllers;
 
-/// <summary>
-/// Endpoint de consulta de totais: receitas, despesas e saldo por pessoa,
-/// além do total geral consolidado de todas as pessoas.
-/// </summary>
+// Aqui o endpoint  calcula os totais: receita, despesa e saldo de cada pessoa,
+//  no final o total geral somando todo mundo
 [ApiController]
 [Route("api/totais")]
 public class TotaisController : ControllerBase
@@ -24,9 +22,7 @@ public class TotaisController : ControllerBase
     [HttpGet]
     public async Task<ActionResult<TotalGeralDto>> Consultar()
     {
-        // Carregamos as pessoas com suas transações para calcular os totais em memória.
-        // Para o volume de dados esperado nesse desafio isso é simples e legível;
-        // em um cenário de produção com grande volume, o agregado seria feito via SQL (GroupBy).
+        // pego cada pessoa junto com as transacoes dela pra poder somar
         var pessoas = await _context.Pessoas
             .Include(p => p.Transacoes)
             .OrderBy(p => p.Nome)
@@ -41,6 +37,7 @@ public class TotaisController : ControllerBase
             TotalDespesas = p.Transacoes.Where(t => t.Tipo == TipoTransacao.Despesa).Sum(t => t.Valor)
         }).ToList();
 
+        // soma tudo de novo pra ter o total geral (de todas as pessoas juntas)
         var resultado = new TotalGeralDto
         {
             Pessoas = totaisPorPessoa,
