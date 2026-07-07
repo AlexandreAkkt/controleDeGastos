@@ -1,6 +1,6 @@
 namespace ControleDeGastos.Api.DTOs;
 
-/// <summary>Totais de receitas, despesas e saldo de uma pessoa específica.</summary>
+/// Totais de receitas, despesas e saldo de uma pessoa específica
 public class TotalPessoaDto
 {
     public Guid PessoaId { get; set; }
@@ -9,17 +9,17 @@ public class TotalPessoaDto
     public decimal TotalReceitas { get; set; }
     public decimal TotalDespesas { get; set; }
 
-    /// <summary>Saldo = total de receitas - total de despesas.</summary>
+    ///Saldo = total de receitas - total de despesas.
     public decimal Saldo => TotalReceitas - TotalDespesas;
 }
 
-/// <summary>Consolidado geral de todas as pessoas cadastradas.</summary>
+/// Consolidado geral de todas as pessoas cadastradas.
 public class TotalGeralDto
 {
     public List<TotalPessoaDto> Pessoas { get; set; } = new();
     public decimal TotalReceitas { get; set; }
     public decimal TotalDespesas { get; set; }
 
-    /// <summary>Saldo líquido = total geral de receitas - total geral de despesas.</summary>
+    /// Saldo líquido = total geral de receitas - total geral de despesas
     public decimal SaldoLiquido => TotalReceitas - TotalDespesas;
 }

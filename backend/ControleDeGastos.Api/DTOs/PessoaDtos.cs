@@ -2,7 +2,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace ControleDeGastos.Api.DTOs;
 
-/// <summary>Dados necessários para criar uma nova pessoa.</summary>
+/// Dados necessários para criar uma nova pessoa
 public class CreatePessoaDto
 {
     [Required(ErrorMessage = "O nome é obrigatório.")]
@@ -13,7 +13,7 @@ public class CreatePessoaDto
     public int Idade { get; set; }
 }
 
-/// <summary>Representação de uma pessoa retornada pela API.</summary>
+/// Representação de uma pessoa retornada pela API.
 public class PessoaDto
 {
     public Guid Id { get; set; }

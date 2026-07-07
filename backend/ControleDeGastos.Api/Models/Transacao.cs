@@ -1,25 +1,24 @@
 namespace ControleDeGastos.Api.Models;
 
-/// <summary>
 /// Representa uma transação financeira (receita ou despesa) vinculada a uma pessoa.
-/// </summary>
+
 public class Transacao
 {
-    /// <summary>Identificador único, gerado automaticamente pelo servidor (Guid).</summary>
+    /// Identificador único, gerado automaticamente pelo servidor 
     public Guid Id { get; set; } = Guid.NewGuid();
 
-    /// <summary>Descrição livre da transação (ex: "Supermercado", "Salário").</summary>
+    ///Descrição livre da transaçãoex: "Supermercado", "Salário"
     public string Descricao { get; set; } = string.Empty;
 
-    /// <summary>Valor monetário da transação. Sempre armazenado como um número positivo.</summary>
+    ///Valor monetário da transação. Sempre armazenado como um número positivo.
     public decimal Valor { get; set; }
 
-    /// <summary>Tipo da transação: Receita ou Despesa.</summary>
+    ///Tipo da transação: Receita ou Despesa.
     public TipoTransacao Tipo { get; set; }
 
-    /// <summary>Chave estrangeira para a pessoa dona dessa transação.</summary>
+    /// Chave estrangeira para a pessoa dona dessa transação.
     public Guid PessoaId { get; set; }
 
-    /// <summary>Navegação para a pessoa dona dessa transação.</summary>
+    /// Navegação para a pessoa dona dessa transação
     public Pessoa? Pessoa { get; set; }
 }

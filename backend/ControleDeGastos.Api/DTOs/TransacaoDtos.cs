@@ -3,7 +3,7 @@ using ControleDeGastos.Api.Models;
 
 namespace ControleDeGastos.Api.DTOs;
 
-/// <summary>Dados necessários para criar uma nova transação.</summary>
+/// Dados necessários para criar uma nova transação.
 public class CreateTransacaoDto
 {
     [Required(ErrorMessage = "A descrição é obrigatória.")]
@@ -20,7 +20,7 @@ public class CreateTransacaoDto
     public Guid PessoaId { get; set; }
 }
 
-/// <summary>Representação de uma transação retornada pela API.</summary>
+/// Representação de uma transação retornada pela API.
 public class TransacaoDto
 {
     public Guid Id { get; set; }

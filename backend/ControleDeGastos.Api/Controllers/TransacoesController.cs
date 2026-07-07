@@ -6,10 +6,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace ControleDeGastos.Api.Controllers;
 
-/// <summary>
-/// Endpoints de gerenciamento de transações: criação e listagem.
-/// Edição e deleção não fazem parte do escopo do desafio.
-/// </summary>
+/// Endpoints de gerenciamento de transaçõe e criação e listagem.
+/// Edição e deleção não fazem parte do desafio.
+
 [ApiController]
 [Route("api/transacoes")]
 public class TransacoesController : ControllerBase
@@ -21,10 +20,10 @@ public class TransacoesController : ControllerBase
         _context = context;
     }
 
-    /// <summary>
-    /// Lista todas as transações cadastradas.
-    /// Aceita opcionalmente um filtro por pessoa (?pessoaId=...).
-    /// </summary>
+   
+    /// Lista todas as transações cadastradas
+    /// Aceita opcionalmente um filtro por pessoa 
+   
     [HttpGet]
     public async Task<ActionResult<IEnumerable<TransacaoDto>>> Listar([FromQuery] Guid? pessoaId)
     {
@@ -53,13 +52,13 @@ public class TransacoesController : ControllerBase
         return Ok(transacoes);
     }
 
-    /// <summary>
-    /// Cadastra uma nova transação.
-    /// Regras de negócio aplicadas:
+  
+    /// Cadastra uma nova transação
+    /// Regras de negócio 
     /// 1. A pessoa informada precisa existir previamente no cadastro de pessoas.
-    /// 2. Se a pessoa for menor de idade (menos de 18 anos), somente transações
+    /// 2. Se a pessoa for < de idade  18 anos, somente transações
     ///    do tipo Despesa podem ser cadastradas para ela.
-    /// </summary>
+    
     [HttpPost]
     public async Task<ActionResult<TransacaoDto>> Criar([FromBody] CreateTransacaoDto dto)
     {
