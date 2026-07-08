@@ -1,6 +1,6 @@
 // tipos usados no front-end
 
-export type TipoTransacao = 0 | 1
+export type TipoTransacao = "Receita" | "Despesa"
 
 export type Pessoa = {
   id: string
@@ -28,6 +28,6 @@ export type TotalPessoa = {
 export type TotalGeral = {
   totalReceitas: number
   totalDespesas: number
-  saldo: number
+  saldoLiquido: number
   pessoas: TotalPessoa[]
 }
